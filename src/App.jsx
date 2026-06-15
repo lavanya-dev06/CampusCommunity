@@ -1,10 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+// ─────────────────────────────────────────────────────────────
+// PASTE YOUR SUPABASE VALUES HERE
+// ─────────────────────────────────────────────────────────────
 const SUPABASE_URL      = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// ─────────────────────────────────────────────────────────────
+// ICONS
+// ─────────────────────────────────────────────────────────────
 const Icon = ({ name, size = 18, style = {} }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={style}>
@@ -352,10 +358,7 @@ function AuthScreen({ showToast }) {
     setLoading(false);
   };
 
-  const googleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({ provider:"google", options:{ redirectTo: window.location.origin } });
-    if (error) setError(error.message);
-  };
+
 
   if (mode === "verify") return (
     <div className="auth-wrap">
@@ -390,8 +393,7 @@ function AuthScreen({ showToast }) {
         <button className="auth-btn" onClick={submit} disabled={loading||!email||!password}>
           {loading ? "Please wait…" : mode==="login" ? "Sign in" : "Create account"}
         </button>
-        <div className="auth-divider">or</div>
-        <button className="google-btn" onClick={googleLogin}><Icon name="google" size={16}/> Continue with Google</button>
+
         <div className="auth-toggle">
           {mode==="login"
             ? <>No account? <span onClick={()=>setMode("register")}>Register</span></>
