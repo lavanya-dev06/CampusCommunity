@@ -1,16 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// ─────────────────────────────────────────────────────────────
-// PASTE YOUR SUPABASE VALUES HERE
-// ─────────────────────────────────────────────────────────────
-const SUPABASE_URL = "https://zeccbvipunichosxsjhe.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InplY2NidmlwdW5pY2hvc3hzamhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NjQ5NDEsImV4cCI6MjA5NDI0MDk0MX0.QR3oHRPasSg3qC9dNxorzWmdU5vtl_kXYZJMrabRPkE";
+const SUPABASE_URL      = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ─────────────────────────────────────────────────────────────
-// ICONS
-// ─────────────────────────────────────────────────────────────
 const Icon = ({ name, size = 18, style = {} }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={style}>
